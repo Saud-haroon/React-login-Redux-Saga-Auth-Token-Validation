@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import store from './store/store'
+import InputDisplay from './components/InputDisplay';
+import Login_SignUP from './components/Login_SignUP';
+import AppRoutes from './AppRoutes';
+import { Token } from '@mui/icons-material';
 
 function App() {
+  useEffect(() => {
+    return () => {
+      sessionStorage.removeItem("jsonWebToken")
+    }
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={store}>
+
+    {/* <Login_SignUP/> */}
+    <AppRoutes/>
+
+    </Provider>
+    
+  )
+
 }
 
 export default App;
